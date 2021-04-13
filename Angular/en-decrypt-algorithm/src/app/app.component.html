@@ -1,0 +1,37 @@
+<div class="testbox">
+    <form>
+        <div class="item">
+            <label for="input">Input</label>
+            <input id="input-value" type="text" name="input-value" required/>
+        </div>
+
+        <div class="question">
+            <label>select algorithm</label>
+            <div class="question-answer">
+                <div>
+                    <input type="radio" value="none" id="radio_1" name="algorithm-radio" />
+                    <label for="radio_1" class="radio"><span>AES</span></label>
+                </div>
+                <div>
+                    <input type="radio" value="none" id="radio_2" name="algorithm-radio" />
+                    <label for="radio_2" class="radio"><span>RSA</span></label>
+                </div>
+            </div>
+        </div>
+        <div class="btn-block">
+            <button type="submit" style="margin:5px;">Encrypt</button>
+            <button type="submit" style="margin:5px;">Decrypt</button>
+        </div>
+    </form>
+</div>
+<div class="testbox">
+    <form>
+        <div class="item">
+            <label for="output">Output</label>
+            <input id="output-value" type="text" name="output-value" required/>
+        </div>
+    </form>
+</div>
+
+
+<router-outlet></router-outlet>
