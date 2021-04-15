@@ -9,16 +9,13 @@ export class RSAService {
 
     private encryptModule = new JsEncryptModule.JSEncrypt();
 
-    ngOnInit() {
-        this.encryptModule.setPublicKey(key.publickey);
-        this.encryptModule.setPrivateKey(key.privatekey);
-    }
-
     public encryptRsa(plainText:string) {
+        this.encryptModule.setPublicKey(key.publickey);
         return this.encryptModule.encrypt(plainText);
     }
 
     public decryptRsa(encryptedText:string) {
+        this.encryptModule.setPrivateKey(key.privatekey);
         return this.encryptModule.decrypt(encryptedText);
     }
 }
