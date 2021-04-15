@@ -26,7 +26,8 @@ public class SecurityUtils {
 		/*
 		 * Test RSA
 		 */
-		String encrypt = rsaEncrypt("akenarong");
+		System.out.println("RSA TEST");
+		String encrypt = rsaEncrypt("akenarongRSA");
 		System.out.println(encrypt);
 		System.out.println(rsaDecrypt(encrypt));
 	}

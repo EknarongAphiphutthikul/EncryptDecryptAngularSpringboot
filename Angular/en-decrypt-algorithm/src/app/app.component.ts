@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import * as JsEncryptModule from 'jsencrypt';
-import key from '@utils/keys/pub.key.json';
+import { AESGCMService } from './services/en-decrypt/aes-gcm.service';
+import { RSAService } from './services/en-decrypt/rsa.service';
 
 @Component({
   selector: 'app-root',
@@ -10,13 +10,23 @@ import key from '@utils/keys/pub.key.json';
 export class AppComponent {
   title = 'en-decrypt-algorithm';
 
-  ngOnInit() {
-    const encrypt = new JsEncryptModule.JSEncrypt();
-    encrypt.setPublicKey(key.publickey);
-    const encryptMsg = encrypt.encrypt("akenarong");
-    console.log(encryptMsg);
+  constructor(
+    private aesgcmService: AESGCMService,
+    private rSAService: RSAService,
+  ) { }
 
-    encrypt.setPrivateKey(key.privatekey);
-    console.log(encrypt.decrypt(encryptMsg));
+  ngOnInit() {
+    console.log("RSA TEST");
+    let encryptText = this.rSAService.encryptRsa("eknarongRsa");
+    console.log(encryptText);
+    console.log(this.rSAService.decryptRsa(encryptText));
+
+    console.log("AES TEST");
+    this.aesgcmService.encryptAesGcm("eknarongAesGcm").then((encryptAesGcmText) => {
+      console.log(encryptAesGcmText);
+      this.aesgcmService.decryptAesGcm(encryptAesGcmText).then((decryptAesGcmText) => {
+        console.log(decryptAesGcmText);
+      });
+    });
   }
 }
