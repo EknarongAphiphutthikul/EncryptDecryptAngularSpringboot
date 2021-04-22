@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AESGCMService } from './services/en-decrypt/aes-gcm.service';
 import { RSAService } from './services/en-decrypt/rsa.service';
+import { SHA512Service } from './services/en-decrypt/sha512.service';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,7 @@ export class AppComponent {
   constructor(
     private aesgcmService: AESGCMService,
     private rSAService: RSAService,
+    private shar512Service: SHA512Service,
   ) { }
 
   ngOnInit() {
@@ -27,6 +29,11 @@ export class AppComponent {
       this.aesgcmService.decryptAesGcm(encryptAesGcmText).then((decryptAesGcmText) => {
         console.log(decryptAesGcmText);
       });
+    });
+
+    console.log("SHA-512 TEST");
+    this.shar512Service.encryptSHA512("900007000|R202002|764|100|N|X2xkTIeEc987ZwClvgbddKCY7Nu3xbAb").then((sha512Text) => {
+      console.log(sha512Text);
     });
   }
 }
